@@ -1,25 +1,22 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-#jobs:
-#  scan-secrets:
-#    docker:
-#      - image: trufflesecurity/trufflehog:latest
-#    steps:
-#      - checkout
-#      - run:
-#          name: "Scan for secrets"
-#          # change --since-commit to match your default branch
-#          command: trufflehog git file://. --results=verified,unknown --fail
-
-
-#workflows:
-#  scan-secrets:
-#    jobs:
-#      - scan-secrets
-orbs:
-  gitleaks: upenn-libraries/gitleaks@0.1.0
-  workflows:
-    check_for_secrets:
-      jobs:
-        - gitleaks/check_local
+jobs:
+  scan-secrets:
+    docker:
+      - image: trufflesecurity/trufflehog:latest
+    steps:
+      - checkout
+      - run:
+          name: "Scan for secrets"
+          # change --since-commit to match your default branch
+          command: trufflehog git file://. --results=verified,unknown --fail
+workflows:
+  scan-secrets:
+    jobs:
+      - scan-secrets
+#orbs:
+#  gitleaks: upenn-libraries/gitleaks@0.1.0
+#  workflows:
+#    check_for_secrets:
+#      jobs:
+#        - gitleaks/check_local
