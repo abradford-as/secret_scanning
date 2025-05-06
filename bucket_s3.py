@@ -14,7 +14,7 @@ def aws_upload(data: Dict):
 def transform_data(es_data: Dict) -> Dict:
     es_data = {**data, "origin": "ES"}
 
-MONGO_URI = "mongodb+srv://testuser2:hub24aoeu@gg-is-awesome-gg273.mongodb.net/test?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://testuser4:hub24aoeu@gg-is-awesome-gg273.mongodb.net/test?retryWrites=true&w=majority"
 
 def pull_data_from_mongo(query: Dict):
     return pymongo.connect(MONGO_URI).fetch(query)
